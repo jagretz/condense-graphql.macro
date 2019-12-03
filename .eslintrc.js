@@ -1,3 +1,7 @@
 module.exports = {
-    extends: ["./packages/eslint-config-base/eslint-base.js"]
+    extends: ["@jagretz/eslint-config-base", "./eslint-overrides.js"],
+    rules: {
+        "global-require": 0,
+        "no-console": 1
+    }
 };

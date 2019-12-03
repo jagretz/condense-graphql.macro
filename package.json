@@ -6,7 +6,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "babel": "babel src/index.js --plugins babel-plugin-macros",
-        "debug": "node --inspect-brk=5858 babel src/macro.js --plugins babel-plugin-macros"
+        "debug": "node --inspect-brk=5858 babel src/macro.js --plugins babel-plugin-macros",
+        "eslint": "eslint ./ --cache",
+        "prettier": "prettier --write \"./**/*.{js,jsx,css,scss,html,json,md,mdx}\""
     },
     "repository": {
         "type": "git",
@@ -21,9 +23,21 @@
     "bugs": {
         "url": "https://github.com/jagretz/condense-graphql.macro/issues"
     },
-    "homepage": "https://github.com/jagretz/condense-graphql.macro#readme",,
+    "homepage": "https://github.com/jagretz/condense-graphql.macro#readme",
     "engines": {
         "node": ">= 8.4",
         "npm": ">= 5.2"
+    },
+    "devDependencies": {
+        "@jagretz/eslint-config-base": "^0.1.1-snapshot.1562715443",
+        "babel-eslint": "^10.0.3",
+        "eslint": "^6.7.2",
+        "husky": "^3.1.0",
+        "lint-staged": "^9.5.0",
+        "prettier": "^1.19.1"
+    },
+    "dependencies": {
+        "@babel/types": "^7.7.4",
+        "babel-plugin-macros": "^2.7.1"
     }
 }
