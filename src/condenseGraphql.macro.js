@@ -2,20 +2,31 @@ const { createMacro, MacroError } = require("babel-plugin-macros");
 const { log, assert } = require("./browserOrNode");
 
 function condenseString(string) {
-    // return string.replace(/(\r\n|\n|\r)/gm, " ").replace(/\s+/g, " ");
-    return string.replace(/\s+/g, " ").replace(/\B\s|\s\B/g, "");
+    /*
+    First, match any white space character, including space, tab, form feed, line feed
+    and replaces with a white space character.
+    Second, match any white space character that buds up against a non-word with the exception of:
+    - a white space character occuring at the beginning of an input
+    - a white space character occuring at the end of an input
+    - a white space character followed by a dot character
+    and replace with an empty space.
+    */
+    return string.replace(/\s+/gm, " ").replace(/(?<!^\B)\B | \B(?!\B$|\.)/g, "");
 }
 
-/**
- * Pads the start and the end of a string with a space character.
- *
- * @param {String} string the string to pad.
- * @param {boolean} padStart whether to pad the start of the string
- * @param {boolean} padEnd whether to pad the end of the string
- * @returns {String} a new string.
- */
-function padString(string, padStart, padEnd) {
-    return string && `${padStart ? " " : ""}${string}${padEnd ? " " : ""}`;
+function removeStartPadding(padValue, compareIndex, string) {
+    if (string[compareIndex] === padValue) {
+        return string.slice(1, string.length)
+    }
+
+    return string;
+}
+function removeEndPadding(padValue, compareIndex, string) {
+    if (string[compareIndex] === padValue) {
+        return string.slice(0, string.length - 1)
+    }
+
+    return string;
 }
 
 // const log = window.console.log;
@@ -71,26 +82,36 @@ function condenseGraphql({ references, /* state, */ babel }) {
         */
         const templateLiteralStartIndex = templateLiteralNode.start + 1;
         const templateLiteralEndIndex = templateLiteralNode.end - 1;
-        // log(
-        //     "templateLiteralStartIndex start/end",
-        //     templateLiteralStartIndex,
-        //     templateLiteralEndIndex
-        // );
+        log(
+            "templateLiteralStartIndex start/end",
+            templateLiteralStartIndex,
+            templateLiteralEndIndex
+        );
 
         const prevQuasis = templateLiteralArg.get("quasis");
         // log("prevQuasis array", prevQuasis);
 
-        const nextQuasis = prevQuasis.map((quasiPath) => {
+        const nextQuasis = prevQuasis.map(quasiPath => {
             // get the quasi node (TemplateElement) off the path.
             const { node: prevQuasi } = quasiPath;
 
             // Determine if we need to pad the start/end of the quasi string.
-            const padStart = prevQuasi.start !== templateLiteralStartIndex;
-            const padEnd = prevQuasi.end !== templateLiteralEndIndex;
-            // log("padStart/padEnd", prevQuasi.start, padStart, prevQuasi.end, padEnd);
+            // const isTemplateElementTheStartOfTheQuais =
+            //     prevQuasi.start === templateLiteralStartIndex;
+            // const isTemplateElementTheEndOfTheQuais = prevQuasi.end === templateLiteralEndIndex;
 
             // create a new node (TemplateElement) with modified values.
             const { value } = prevQuasi;
+            let rawValue = condenseString(value.raw);
+
+            if (prevQuasi.start === templateLiteralStartIndex) {
+                 rawValue = removeStartPadding(" ", 0, rawValue)
+            }
+
+            if (prevQuasi.end === templateLiteralEndIndex) {
+                 rawValue = removeEndPadding(" ", rawValue.length, rawValue)
+            }
+
             const nextQuasi = types.TemplateElement({
                 /*
                 `raw` and `cooked` properties of a template string.
@@ -101,8 +122,11 @@ function condenseGraphql({ references, /* state, */ babel }) {
                 - [raw](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Raw_strings)
                 - [cooked](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences)
                 */
-                raw: padString(condenseString(value.raw), padStart, padEnd),
-                cooked: padString(condenseString(value.cooked), padStart, padEnd)
+                // raw: padString(condenseString(value.raw), padStart, padEnd),
+                // cooked: padString(condenseString(value.cooked), padStart, padEnd)
+                // raw: condenseString(value.raw),
+                // cooked: condenseString(value.cooked)
+                raw: rawValue
             });
 
             // log("nextQuasi", nextQuasi);
@@ -122,12 +146,3 @@ function condenseGraphql({ references, /* state, */ babel }) {
 }
 
 module.exports = createMacro(condenseGraphql);
-
-/* todo
-  - [ ] retain padding surrounding template expressions
-  - [ ] Test nested template literals
-  - [ ] Fix:
-     `${five}${five}` // Correct:   prints `${five}${five}`
-     `${five}mice`    // Incorrect: prints ${five} mice
-     The lack of a space between the template expression and the string should be retained.
-*/

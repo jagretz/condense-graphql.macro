@@ -4,7 +4,7 @@
     "description": "Remove unnecessary whitespace characters from graphql queries, mutations, etc at compile time.",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
+        "test": "jest",
         "babel": "babel src/index.js --plugins babel-plugin-macros",
         "debug": "node --inspect-brk=5858 babel src/macro.js --plugins babel-plugin-macros",
         "eslint": "eslint ./ --cache",
@@ -36,6 +36,7 @@
         "babel-eslint": "^10.0.3",
         "eslint": "^6.7.2",
         "husky": "^3.1.0",
+        "jest": "^24.9.0",
         "lint-staged": "^9.5.0",
         "prettier": "^1.19.1"
     },
