@@ -2,9 +2,13 @@
     "name": "condense-graphql.macro",
     "version": "0.1.1-0",
     "description": "Remove unnecessary whitespace characters from graphql queries, mutations, etc at compile time.",
-    "main": "index.js",
+    "files": [
+        "src/browserOrNode.js",
+        "src/condenseGraphql.macro.js"
+    ],
     "scripts": {
         "test": "jest",
+        "test:coverage": "jest --coverage",
         "babel": "babel src/index.js --plugins babel-plugin-macros",
         "debug": "node --inspect-brk=5858 babel src/macro.js --plugins babel-plugin-macros",
         "eslint": "eslint ./ --cache",
@@ -15,10 +19,10 @@
         "url": "git+https://github.com/jagretz/condense-graphql.macro.git"
     },
     "keywords": [
-        "graphql",
         "macros",
         "babel-plugin-macro",
-        "babel-plugin-macros"
+        "babel-plugin-macros",
+        "graphql"
     ],
     "author": "jason gretz <jagretz@gmail.com>",
     "license": "MIT",
@@ -29,6 +33,16 @@
     "engines": {
         "node": ">= 8.4",
         "npm": ">= 5.2"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "lint-staged",
+            "pre-push": "npm test"
+        }
+    },
+    "dependencies": {
+        "@babel/types": "^7.7.4",
+        "babel-plugin-macros": "^2.7.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.7.4",
@@ -41,9 +55,5 @@
         "jest": "^24.9.0",
         "lint-staged": "^9.5.0",
         "prettier": "^1.19.1"
-    },
-    "dependencies": {
-        "@babel/types": "^7.7.4",
-        "babel-plugin-macros": "^2.7.1"
     }
 }

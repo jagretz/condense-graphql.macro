@@ -13,12 +13,10 @@ if (typeof window === "undefined") {
     // eslint-disable-next-line no-console
     mutableLog = console.log;
     mutableAssert = require("assert");
-    // mutableLog("running in node");
 } else {
     mutableLog = window.console.log;
     mutableAssert = window.console.assert;
     mutableIsBrowser = true;
-    // mutableLog("running in browser");
 }
 /* eslint-enable prefer-destructuring */
 
