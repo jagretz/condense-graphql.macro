@@ -1,5 +1,5 @@
 {
-    "name": "@jagretz/condense-graphql.macro",
+    "name": "condense-graphql.macro",
     "version": "0.1.0",
     "description": "Remove unnecessary whitespace characters from graphql queries, mutations, etc at compile time.",
     "main": "index.js",
@@ -16,6 +16,8 @@
     },
     "keywords": [
         "graphql",
+        "macros",
+        "babel-plugin-macro",
         "babel-plugin-macros"
     ],
     "author": "jason gretz <jagretz@gmail.com>",
