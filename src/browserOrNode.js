@@ -24,14 +24,10 @@ if (typeof window === "undefined") {
 
 /*
 Reassign and export as a 'const' to prevent re-assignment in user modules.
-*/
-// Don't use es import/export unless you know which version of node the user is
-// running. Which you don't.
-// export const log = mutableLog;
-// export const assert = mutableAssert;
-// export const isBrowser = mutableIsBrowser;
-// export const isNode = !!isBrowser;
 
+! Don't use es import/export unless you transpile before publishing, or can guarantee
+! the version of node the user is running.
+*/
 module.exports = {
     log: mutableLog,
     assert: mutableAssert,
