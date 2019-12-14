@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`condenseGraphql.macro removes unnecessary whitespace from a graphql query containing a single object 1`] = `"const result = \`query{simpleQuery{options}}\`;"`;
+
+exports[`condenseGraphql.macro removes unnecessary whitespace from a graphql query containing multiple query params 1`] = `"const result = \`query{simpleQuery{options date age}}\`;"`;
+
+exports[`condenseGraphql.macro removes unnecessary whitespace from a graphql query containing query variables and nested objects 1`] = `"const result = \`query queryWithVariables($id:ID,$age:String,$startDate:Date){products(type:$type){id code options{timeInMilliseconds}}}\`;"`;
+
+exports[`condenseGraphql.macro retains space between template expressions when separated by a new line 1`] = `"const result = \`retains space between \${template} \${expressions} when separated by a new line.\`;"`;
+
+exports[`condenseGraphql.macro retains whitespace before, in-between, and after template expressions 1`] = `"const result = \`retains space \${before},\${after} and between \${template} \${expressions}.\`;"`;
+
+exports[`condenseGraphql.macro should remove unnecessary whitespace from template literal 1`] = `"const result = \`replaces \${amount} whitespace characters with a single space.\`;"`;
