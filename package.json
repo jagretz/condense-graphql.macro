@@ -2,15 +2,16 @@
     "name": "condense-graphql.macro",
     "version": "0.1.1-0",
     "description": "Remove unnecessary whitespace characters from graphql queries, mutations, etc at compile time.",
+    "main": "src/condenseGraphql.macro.js",
     "files": [
-        "src/browserOrNode.js",
-        "src/condenseGraphql.macro.js"
+        "dist"
     ],
     "scripts": {
         "test": "jest",
         "test:coverage": "jest --coverage",
         "babel": "babel src/index.js --plugins babel-plugin-macros",
-        "debug": "node --inspect-brk=5858 babel src/macro.js --plugins babel-plugin-macros",
+        "build": "babel src/condenseGraphql.macro.js --out-file dist/condenseGraphql.macro.js --source-maps",
+        "doctoc": "doctoc .",
         "eslint": "eslint ./ --cache",
         "prettier": "prettier --write \"./**/*.{js,jsx,css,scss,html,json,md,mdx}\""
     },
@@ -41,15 +42,17 @@
         }
     },
     "dependencies": {
+        "@babel/core": "^7.7.4",
         "@babel/types": "^7.7.4",
         "babel-plugin-macros": "^2.7.1"
     },
     "devDependencies": {
         "@babel/cli": "^7.7.4",
-        "@babel/core": "^7.7.4",
         "@babel/node": "^7.7.4",
         "@jagretz/eslint-config-base": "^0.1.1-snapshot.1562715443",
         "babel-eslint": "^10.0.3",
+        "babel-preset-minify": "^0.5.1",
+        "doctoc": "^1.4.0",
         "eslint": "^6.7.2",
         "husky": "^3.1.0",
         "jest": "^24.9.0",

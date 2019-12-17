@@ -8,15 +8,18 @@ compile time.
 [Demo](https://astexplorer.net/#/gist/83b1337139eaf22be01d9815547e2f22/44a4dcff182d27463bfb8a56274e0219ef8e331f) -
 Thanks to [astexplorer.net](http://astexplorer.net)!
 
-**Table of Contents**
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [condense-graphql.macro](#condense-graphqlmacro)
-  - [About](#about)
-  - [Install](#install)
-  - [Usage](#usage)
-  - [License](#license)
+- [About](#about)
+- [Install](#install)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
 
-## About
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+# About
 
 This is a [babel macro](https://github.com/kentcdodds/babel-plugin-macros) that
 takes a well-formatted (albeit verbose) graphql query string and removes all
@@ -26,13 +29,13 @@ That allows you to build well-formatted graphql queries, even run a formatter
 against them, during development, and at (compile) build time, remove all
 unnecessary whitespace resulting in a much smaller memory footprint.
 
-## Install
+# Install
 
 ```js
 npm install --save-dev condense-graphql.macro
 ```
 
-## Usage
+# Usage
 
 ```js
 // import the macro
@@ -89,6 +92,14 @@ function queryWithVariables(type) {
 }
 ```
 
-## License
+# Contributing
+
+Help / improvement is appreciated!
+
+Open an issue and/or submit a pull-request.
+
+See [./DEVELOPMENT.md](./DEVELOPMENT.md) for help developing this macro.
+
+# License
 
 MIT

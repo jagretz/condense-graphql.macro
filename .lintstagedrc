@@ -1,4 +1,7 @@
 {
+    "*.{md,mdx}": [
+        "npm run doctoc .",
+    ],
     "*.{js,jsx}": [
         "npm run eslint --"
     ],
