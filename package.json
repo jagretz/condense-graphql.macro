@@ -7,10 +7,9 @@
         "dist"
     ],
     "scripts": {
+        "build": "babel src/condenseGraphql.macro.js --out-file dist/condenseGraphql.macro.js --presets minify --source-maps",
         "test": "jest",
         "test:coverage": "jest --coverage",
-        "babel": "babel src/index.js --plugins babel-plugin-macros",
-        "build": "babel src/condenseGraphql.macro.js --out-file dist/condenseGraphql.macro.js --source-maps",
         "doctoc": "doctoc .",
         "eslint": "eslint ./ --cache",
         "prettier": "prettier --write \"./**/*.{js,jsx,css,scss,html,json,md,mdx}\""

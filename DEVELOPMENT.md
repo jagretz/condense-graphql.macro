@@ -70,7 +70,11 @@ the result evaluated just as it would in a running application.
 # Builds
 
 Babel is used to produce minified production build with source maps output to
-`/dist`
+`/dist`.
+
+Some babel configurations are intentionally set on the build script rather than
+in the `.babelrc` so as not to change (minify) with the output during debugging
+and testing.
 
 This is controlled through the npm script `build` and uses a `.babelrc`.
 
