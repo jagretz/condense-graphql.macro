@@ -1,13 +1,13 @@
 {
     "name": "condense-graphql.macro",
-    "version": "0.1.1-1",
+    "version": "0.1.1-0",
     "description": "Remove unnecessary whitespace characters from graphql queries, mutations, etc at compile time.",
-    "main": "src/condenseGraphql.macro.js",
+    "main": "dist/index.js",
     "files": [
         "dist"
     ],
     "scripts": {
-        "build": "babel src/condenseGraphql.macro.js --out-file dist/condenseGraphql.macro.js --presets minify --source-maps",
+        "build": "babel src/condenseGraphql.macro.js --out-file dist/index.js --presets minify --source-maps",
         "test": "jest",
         "test:coverage": "jest --coverage",
         "doctoc": "doctoc .",
