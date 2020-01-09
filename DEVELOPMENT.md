@@ -7,6 +7,7 @@
 - [Debugging](#debugging)
 - [Testing](#testing)
 - [Builds](#builds)
+- [External Documentation and Resources](#external-documentation-and-resources)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -83,3 +84,8 @@ submitting a release.
 
 Run `npm publish` to publish to the registry. Only authorized contributors may
 publish packages.
+
+# External Documentation and Resources
+
+- [astexplorer.et](https://astexplorer.net/)
+- [babel-types](https://babeljs.io/docs/en/babel-types)

@@ -98,8 +98,8 @@ Help / improvement is appreciated!
 
 Open an issue and/or submit a pull-request.
 
-See [./DEVELOPMENT.md](./DEVELOPMENT.md) for help developing this macro.
+See [DEVELOPMENT.md](./DEVELOPMENT.md) for help developing this macro.
 
 # License
 
-MIT
+Refer to [LICENSE.md](./LICENSE.md).
