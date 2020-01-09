@@ -13,7 +13,7 @@ const babelOptions = {
 describe("condenseGraphql.macro", () => {
     it("should remove unnecessary whitespace from template literal", () => {
         const transform = `
-        const condenseGraphql = require("./condenseGraphql.macro.js");
+        const condenseGraphql = require("./macro.js");
         const result = condenseGraphql(\`replaces \${amount}    whitespace	characters
         with a single space.\`)
         `;
@@ -41,7 +41,7 @@ describe("condenseGraphql.macro", () => {
 
     it("retains whitespace before, in-between, and after template expressions", () => {
         const transform = `
-        const condenseGraphql = require("./condenseGraphql.macro.js");
+        const condenseGraphql = require("./macro.js");
         const result = condenseGraphql(\`retains space \${before}, \${after} and between \${template} \${expressions}.\`)
         `;
 
@@ -66,7 +66,7 @@ describe("condenseGraphql.macro", () => {
 
     it("retains space between template expressions when separated by a new line", () => {
         const transform = `
-        const condenseGraphql = require("./condenseGraphql.macro.js");
+        const condenseGraphql = require("./macro.js");
         const result = condenseGraphql(\`retains space between \${template}
         \${expressions} when separated by a new line.\`)
         `;
@@ -93,7 +93,7 @@ describe("condenseGraphql.macro", () => {
     describe("removes unnecessary whitespace from a graphql query", () => {
         it("containing a single object", () => {
             const transform = `
-            const condenseGraphql = require("./condenseGraphql.macro.js");
+            const condenseGraphql = require("./macro.js");
             const result = condenseGraphql(\`
                 query {
                     simpleQuery{
@@ -118,7 +118,7 @@ describe("condenseGraphql.macro", () => {
 
         it("containing multiple query params", () => {
             const transform = `
-            const condenseGraphql = require("./condenseGraphql.macro.js");
+            const condenseGraphql = require("./macro.js");
             const result = condenseGraphql(\`
                 query {
                     simpleQuery{
@@ -145,7 +145,7 @@ describe("condenseGraphql.macro", () => {
 
         it("containing query variables and nested objects", () => {
             const transform = `
-            const condenseGraphql = require("./condenseGraphql.macro.js");
+            const condenseGraphql = require("./macro.js");
             const result = condenseGraphql(\`
                 query queryWithVariables(
                     $id: ID,

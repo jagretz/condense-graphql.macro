@@ -7,7 +7,7 @@
         "dist"
     ],
     "scripts": {
-        "build": "babel src --out-dir dist --presets minify --source-maps",
+        "build": "cross-env NODE_ENV=production babel src --out-dir dist --source-maps",
         "build:dev": "babel src --out-dir dist",
         "test": "jest",
         "test:coverage": "jest --coverage",
@@ -53,6 +53,7 @@
         "@jagretz/eslint-config-base": "^0.1.1-snapshot.1562715443",
         "babel-eslint": "^10.0.3",
         "babel-preset-minify": "^0.5.1",
+        "cross-env": "^6.0.3",
         "doctoc": "^1.4.0",
         "eslint": "^6.7.2",
         "husky": "^3.1.0",
