@@ -14,6 +14,7 @@ Thanks to [astexplorer.net](http://astexplorer.net)!
 - [About](#about)
 - [Install](#install)
 - [Usage](#usage)
+  - [Caveats](#caveats)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -90,6 +91,39 @@ Produces:
 function queryWithVariables(type) {
   return `query products($type:String,$contains:String){product(type:$type,contains:$contains){id ${type} description}}`;
 }
+```
+
+## Caveats
+
+The argument to the function must be a single string or template literal
+argument. Using binary operations or calling `concat()` won't work. For example:
+
+```js
+import condenseGraphql from "condense-graphql.macro";
+
+// Fails
+condenseGraphql("query" + "getUserData { id name number }");
+// Fails
+condenseGraphql("query".concat("getUserData { id name number }"));
+```
+
+However, you can work around this by using the
+[preval.macro](https://github.com/kentcdodds/preval.macro). For example:
+
+```js
+// In this instance the import order matters.
+// preval.macro must come before condense-graphql.macro so that it is the first to run.
+import preval from "preval.macro";
+import condenseGraphql from "condense-graphql.macro";
+
+// Works
+condenseGraphql(
+  preval`module.exports = "query" + "getUserData { id name number }"`
+);
+// Works
+condenseGraphql(
+  preval`module.exports = "query".concat("getUserData { id name number }")`
+);
 ```
 
 # Contributing
