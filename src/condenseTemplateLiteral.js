@@ -60,7 +60,7 @@ function condenseTemplateLiteral(types, templateLiteralArg) {
     The TemplateLiteral may have many quasis (TemplateElements) which we
     will need to iterate over.
     */
-    const nextQuasis = prevQuasis.map(quasiPath => {
+    const nextQuasis = prevQuasis.map((quasiPath) => {
         // get the quasi node (TemplateElement) off the path.
         const { node: prevQuasi } = quasiPath;
 
@@ -90,7 +90,7 @@ function condenseTemplateLiteral(types, templateLiteralArg) {
             - [raw](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Raw_strings)
             - [cooked](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#ES2018_revision_of_illegal_escape_sequences)
             */
-            raw: rawValue
+            raw: rawValue,
         });
 
         return nextQuasi;
