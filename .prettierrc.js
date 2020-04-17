@@ -19,8 +19,8 @@ module.exports = {
             options: {
                 printWidth: 80,
                 tabWidth: 2,
-                proseWrap: "always"
-            }
-        }
-    ]
+                proseWrap: "always",
+            },
+        },
+    ],
 };

@@ -22,7 +22,7 @@ function condenseGraphql({ references, babel }) {
     `references.default` is the `import xyz from...`. Use the name of your
     macro for named exports.
     */
-    references.default.forEach(referencePath => {
+    references.default.forEach((referencePath) => {
         // referencePath is the macro: condenseGraphql. An `Identifier` with a `name`
         // property which is the name assigned to the default import, eg "condenseQuery".
 

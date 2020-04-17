@@ -22,12 +22,12 @@ module.exports = function configure(api) {
 
     const baseOptions = {
         plugins: ["macros"],
-        comments: false
+        comments: false,
     };
 
     const baseBuildConfiguration = {
         ...baseOptions,
-        ignore: ["src/**/*.test.js", "src/**/__tests__", "src/**/__snapshots__"]
+        ignore: ["src/**/*.test.js", "src/**/__tests__", "src/**/__snapshots__"],
     };
 
     if (isTestEnv) {
@@ -42,7 +42,7 @@ module.exports = function configure(api) {
             ...baseBuildConfiguration,
             ...presets,
             /* sourceMaps only work as a cli option in @babel/core v7.7.4 */
-            sourceMaps: true
+            sourceMaps: true,
         };
     }
 
@@ -63,16 +63,16 @@ function getPresets(env) {
                 "@babel/preset-env",
                 {
                     targets: {
-                        node: true
-                    }
-                }
-            ]
-        ]
+                        node: true,
+                    },
+                },
+            ],
+        ],
     };
 
     if (env === production) {
         return {
-            presets: [...presets.presets, "minify"]
+            presets: [...presets.presets, "minify"],
         };
     }
 

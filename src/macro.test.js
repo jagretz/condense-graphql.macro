@@ -7,7 +7,7 @@ const babelOptions = {
     Resolve the macro import relative to this filepath.
     @see [filename](https://babeljs.io/docs/en/options#filename)
     */
-    filename: __filename
+    filename: __filename,
 };
 
 describe("condenseGraphql.macro", () => {
